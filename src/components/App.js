@@ -5,27 +5,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      para: false
+      date: new Date().toLocaleTimeString()
     };
   }
-  para() {
-    return (
-      <p id="para">
-        Hello, I've learnt to use the full-stack evaluation tool. This makes me
-        so happy
-      </p>
-    );
+  componentDidMount() {
+    this.intervalId = setInterval(() => {
+      this.setState({ date: new Date().toLocaleTimeString() });
+    }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
   render() {
     return (
-      <>
-        <div id="main">
-          {/* Do not remove this main div!! */}
-          <button id="click" onClick={() => this.setState({ para: true })}>
-            {this.state.para ? this.para() : ""}
-          </button>
-        </div>
-      </>
+      <div className="Clock">
+        <h3 id="time">{this.state.date}</h3>
+      </div>
     );
   }
 }
+
+export default App;
