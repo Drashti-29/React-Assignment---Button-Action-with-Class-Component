@@ -1,25 +1,27 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "../styles/App.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date().toLocaleTimeString()
+      para: false
     };
   }
-  componentDidMount() {
-    this.intervalId = setInterval(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
-    }, 1000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
+  para() {
+    return (
+      <p id="para">
+        Hello, I've learnt to use the full-stack evaluation tool. This makes me
+        so happy
+      </p>
+    );
   }
   render() {
     return (
-      <div className="Clock">
-        <h3 id="time">{this.state.date}</h3>
+      <div id="main">
+        <button id="click" onClick={() => this.setState({ para: true })}>
+          {this.state.para ? this.para() : ""}
+        </button>
       </div>
     );
   }
